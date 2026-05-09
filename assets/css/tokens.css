@@ -1,0 +1,450 @@
+/* ============================================
+   WorkBridge PH — Design Tokens
+   ============================================ */
+
+:root {
+  /* Colors — Light mode */
+  --color-bg: #F7F8FA;
+  --color-bg-card: #FFFFFF;
+  --color-bg-elevated: #FFFFFF;
+  --color-border: #E5E7EB;
+  --color-border-subtle: #F3F4F6;
+  
+  --color-text: #1F2937;
+  --color-text-secondary: #6B7280;
+  --color-text-muted: #9CA3AF;
+  
+  --color-accent: #4F46E5;
+  --color-accent-hover: #4338CA;
+  --color-accent-muted: #EEF2FF;
+  
+  --color-accent-teal: #0D9488;
+  --color-accent-violet: #7C3AED;
+  
+  /* Status colors */
+  --color-success: #059669;
+  --color-success-bg: #D1FAE5;
+  --color-warning: #D97706;
+  --color-warning-bg: #FEF3C7;
+  --color-error: #DC2626;
+  --color-error-bg: #FEE2E2;
+  --color-info: #0284C7;
+  --color-info-bg: #E0F2FE;
+  --color-pending: #EA580C;
+  --color-pending-bg: #FFEDD5;
+  
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 14px;
+  --radius-xl: 16px;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06);
+  
+  /* Layout */
+  --container-max: 1200px;
+  --sidebar-width: 260px;
+  --topbar-height: 64px;
+  
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  
+  /* Typography */
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, monospace;
+  
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+}
+
+/* Dark mode (optional) */
+[data-theme="dark"] {
+  --color-bg: #111827;
+  --color-bg-card: #1F2937;
+  --color-bg-elevated: #374151;
+  --color-border: #374151;
+  --color-border-subtle: #4B5563;
+  --color-text: #F9FAFB;
+  --color-text-secondary: #D1D5DB;
+  --color-text-muted: #9CA3AF;
+  --color-accent-muted: #312E81;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.3);
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Dark mode: ensure all text is readable */
+[data-theme="dark"] .card-title,
+[data-theme="dark"] .card h1,
+[data-theme="dark"] .card h2,
+[data-theme="dark"] .card h3,
+[data-theme="dark"] .card h4,
+[data-theme="dark"] .card h5,
+[data-theme="dark"] .card-body,
+[data-theme="dark"] .card-body p,
+[data-theme="dark"] .form-label,
+[data-theme="dark"] .form-check-label,
+[data-theme="dark"] label {
+  color: #F9FAFB !important;
+}
+
+[data-theme="dark"] .form-input,
+[data-theme="dark"] .form-select,
+[data-theme="dark"] .form-textarea,
+[data-theme="dark"] .form-control {
+  background: #374151 !important;
+  border-color: #4B5563 !important;
+  color: #F9FAFB !important;
+}
+
+[data-theme="dark"] .form-check-input {
+  background-color: #374151;
+  border-color: #4B5563;
+}
+
+/* Override Bootstrap & inline classes for dark mode - all screens */
+[data-theme="dark"] .text-dark,
+[data-theme="dark"] .text-body {
+  color: #F9FAFB !important;
+}
+
+[data-theme="dark"] .text-secondary,
+[data-theme="dark"] .text-muted {
+  color: #D1D5DB !important;
+}
+
+[data-theme="dark"] .public-nav-brand,
+[data-theme="dark"] .public-nav-links a {
+  color: #D1D5DB !important;
+}
+
+[data-theme="dark"] .public-nav-links a:hover {
+  color: #F9FAFB !important;
+}
+
+[data-theme="dark"] .job-card,
+[data-theme="dark"] .job-card:hover {
+  color: #F9FAFB !important;
+}
+
+[data-theme="dark"] .job-card-company,
+[data-theme="dark"] .job-card-meta span {
+  color: #D1D5DB !important;
+}
+
+[data-theme="dark"] .table th,
+[data-theme="dark"] .table td,
+[data-theme="dark"] .table a,
+[data-theme="dark"] .table .btn {
+  color: #F9FAFB !important;
+}
+
+[data-theme="dark"] .table a:hover,
+[data-theme="dark"] .table .btn:hover {
+  color: #A5B4FC !important;
+}
+
+[data-theme="dark"] .table thead th {
+  background: #374151 !important;
+  color: #E5E7EB !important;
+}
+
+[data-theme="dark"] .table tbody tr {
+  background: #1F2937 !important;
+}
+
+[data-theme="dark"] .table tbody tr:nth-child(even) {
+  background: #374151 !important;
+}
+
+[data-theme="dark"] .table tbody tr:hover {
+  background: #4B5563 !important;
+}
+
+[data-theme="dark"] .table-wrap,
+[data-theme="dark"] .card .table-wrap {
+  background: transparent;
+}
+
+[data-theme="dark"] .topbar-title,
+[data-theme="dark"] .topbar .btn,
+[data-theme="dark"] .topbar-actions,
+[data-theme="dark"] .topbar button {
+  color: #F9FAFB !important;
+}
+
+[data-theme="dark"] .app-content h1,
+[data-theme="dark"] .app-content h2,
+[data-theme="dark"] .app-content h3 {
+  color: #F9FAFB !important;
+}
+
+[data-theme="dark"] .auth-card a.text-dark,
+[data-theme="dark"] .auth-demo strong,
+[data-theme="dark"] .auth-demo p {
+  color: #F9FAFB !important;
+}
+
+[data-theme="dark"] .stat-value {
+  color: #F9FAFB !important;
+}
+
+[data-theme="dark"] .stat-label {
+  color: #9CA3AF !important;
+}
+
+[data-theme="dark"] .empty-state,
+[data-theme="dark"] .empty-state p,
+[data-theme="dark"] .card-body.text-muted,
+[data-theme="dark"] .card-body.text-muted p {
+  color: #D1D5DB !important;
+}
+
+[data-theme="dark"] .chip {
+  background: #374151 !important;
+  border-color: #4B5563 !important;
+  color: #E5E7EB !important;
+}
+
+[data-theme="dark"] .chip:hover {
+  border-color: #6366F1 !important;
+  color: #A5B4FC !important;
+}
+
+[data-theme="dark"] .chip.active {
+  background: #4F46E5 !important;
+  border-color: #4F46E5 !important;
+  color: white !important;
+}
+
+[data-theme="dark"] .dropdown-menu {
+  background: #1F2937 !important;
+  border-color: #374151 !important;
+}
+
+[data-theme="dark"] .dropdown-item:hover {
+  background: #374151 !important;
+}
+
+[data-theme="dark"] .dropdown-item {
+  color: var(--color-text) !important;
+}
+
+[data-theme="dark"] .card {
+  background: #1F2937 !important;
+  border-color: #374151 !important;
+}
+
+[data-theme="dark"] .badge-verified,
+[data-theme="dark"] .badge-active {
+  background: #059669 !important;
+  color: white !important;
+}
+
+[data-theme="dark"] .badge-pending {
+  background: #EA580C !important;
+  color: white !important;
+}
+
+[data-theme="dark"] .badge-submitted {
+  background: #0284C7 !important;
+  color: white !important;
+}
+
+[data-theme="dark"] .badge-rejected {
+  background: #DC2626 !important;
+  color: white !important;
+}
+
+[data-theme="dark"] .badge-suspended {
+  background: #7C3AED !important;
+  color: white !important;
+}
+
+/* Dark mode: badges with light backgrounds need contrast fix */
+[data-theme="dark"] .badge-teal {
+  background: #134E4A !important;
+  color: #5EEAD4 !important;
+}
+
+[data-theme="dark"] .badge-violet {
+  background: #4C1D95 !important;
+  color: #C4B5FD !important;
+}
+
+[data-theme="dark"] .badge-reviewed {
+  background: #312E81 !important;
+  color: #A5B4FC !important;
+}
+
+[data-theme="dark"] .badge-interview {
+  background: #92400E !important;
+  color: #FDE68A !important;
+}
+
+[data-theme="dark"] .badge-hired {
+  background: #064E3B !important;
+  color: #6EE7B7 !important;
+}
+
+/* Dark mode: modal */
+[data-theme="dark"] .modal {
+  background: #1F2937 !important;
+  border-color: #374151 !important;
+}
+
+[data-theme="dark"] .modal-header,
+[data-theme="dark"] .modal-footer {
+  border-color: #374151 !important;
+}
+
+[data-theme="dark"] .modal-title,
+[data-theme="dark"] .modal-body,
+[data-theme="dark"] .modal-body p,
+[data-theme="dark"] .modal-body h1,
+[data-theme="dark"] .modal-body h2,
+[data-theme="dark"] .modal-body h3,
+[data-theme="dark"] .modal-body h4 {
+  color: #F9FAFB !important;
+}
+
+/* Dark mode: tabs */
+[data-theme="dark"] .tab {
+  color: #9CA3AF !important;
+}
+
+[data-theme="dark"] .tab:hover {
+  color: #F9FAFB !important;
+}
+
+[data-theme="dark"] .tab.active {
+  color: #A5B4FC !important;
+  border-bottom-color: #A5B4FC !important;
+}
+
+/* Dark mode: pagination */
+[data-theme="dark"] .pagination button {
+  background: #1F2937 !important;
+  border-color: #374151 !important;
+  color: #D1D5DB !important;
+}
+
+[data-theme="dark"] .pagination button:hover:not(:disabled) {
+  border-color: #6366F1 !important;
+  color: #A5B4FC !important;
+}
+
+[data-theme="dark"] .pagination button.active {
+  background: #4F46E5 !important;
+  border-color: #4F46E5 !important;
+  color: white !important;
+}
+
+/* Dark mode: toast */
+[data-theme="dark"] .toast {
+  background: #1F2937 !important;
+  color: #F9FAFB !important;
+}
+
+/* Dark mode: search bar */
+[data-theme="dark"] .search-bar {
+  background: #1F2937 !important;
+  border-color: #374151 !important;
+}
+
+[data-theme="dark"] .search-bar input {
+  background: transparent !important;
+  color: #F9FAFB !important;
+}
+
+/* Dark mode: Bootstrap alerts */
+[data-theme="dark"] .alert-warning {
+  background: #422006 !important;
+  border-color: #92400E !important;
+  color: #FDE68A !important;
+}
+
+[data-theme="dark"] .alert-info {
+  background: #0C4A6E !important;
+  border-color: #0369A1 !important;
+  color: #BAE6FD !important;
+}
+
+[data-theme="dark"] .alert-success {
+  background: #064E3B !important;
+  border-color: #047857 !important;
+  color: #6EE7B7 !important;
+}
+
+[data-theme="dark"] .alert-danger {
+  background: #450A0A !important;
+  border-color: #991B1B !important;
+  color: #FCA5A5 !important;
+}
+
+[data-theme="dark"] .alert a {
+  color: #93C5FD !important;
+}
+
+/* Dark mode: general text elements that Bootstrap may style */
+[data-theme="dark"] p,
+[data-theme="dark"] li,
+[data-theme="dark"] span:not(.badge):not(.bi) {
+  color: inherit;
+}
+
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] h5,
+[data-theme="dark"] h6 {
+  color: #F9FAFB !important;
+}
+
+/* Dark mode: drawer panel */
+[data-theme="dark"] .drawer-panel {
+  background: #1F2937 !important;
+  box-shadow: -4px 0 20px rgba(0,0,0,0.4) !important;
+}
+
+/* Dark mode: Bootstrap form-select (native dropdowns in filters) */
+[data-theme="dark"] select.form-select {
+  background-color: #374151 !important;
+  border-color: #4B5563 !important;
+  color: #F9FAFB !important;
+}
+
+/* Dark mode: topbar background */
+[data-theme="dark"] .topbar {
+  background: #1F2937 !important;
+  border-bottom-color: #374151 !important;
+}
+
+/* Dark mode: fw-bold text that uses Bootstrap color classes */
+[data-theme="dark"] .text-primary {
+  color: #818CF8 !important;
+}
+
+/* Dark mode: job card salary */
+[data-theme="dark"] .job-card-salary {
+  color: #818CF8 !important;
+}
