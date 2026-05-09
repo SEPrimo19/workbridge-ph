@@ -157,9 +157,12 @@ class SeekerController extends Controller
             return response()->json(['data' => []]);
         }
 
+        // Order by saved_at — the saved_jobs table doesn't have created_at,
+        // so the default `->latest()` (which assumes created_at) errors with
+        // "Unknown column 'created_at'" on MySQL.
         $saved = SavedJob::with(['jobListing.company', 'jobListing.tags'])
             ->where('seeker_id', $seeker->id)
-            ->latest()
+            ->orderByDesc('saved_at')
             ->paginate(20);
 
         return response()->json($saved);
