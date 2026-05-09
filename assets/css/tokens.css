@@ -184,6 +184,40 @@
   background: transparent;
 }
 
+/* Bootstrap utility classes used INSIDE table cells need explicit dark-mode overrides:
+   - text-dark renders black on dark bg → invisible (manage-jobs job titles, etc.)
+   - text-secondary / text-muted render in faint gray → barely readable
+   - These rules use higher specificity (3 classes) so they win over Bootstrap's
+     own !important utility colors. */
+[data-theme="dark"] .table .text-dark,
+[data-theme="dark"] .table a.text-dark,
+[data-theme="dark"] .table .text-secondary,
+[data-theme="dark"] .table .text-muted,
+[data-theme="dark"] .table small,
+[data-theme="dark"] .table span:not([class*="badge"]) {
+  color: #E5E7EB !important;
+}
+
+/* Plain `.badge` with no modifier class — used for things like role labels
+   that don't always have a status color. Without this they're invisible
+   on dark backgrounds because they have no background of their own. */
+[data-theme="dark"] .table .badge:not([class*="badge-"]) {
+  background: #4B5563 !important;
+  color: #F9FAFB !important;
+}
+
+/* Dark-mode overrides for badge variants that didn't have rules yet */
+[data-theme="dark"] .badge-reviewed,
+[data-theme="dark"] .badge-interview {
+  background: #1E3A8A !important;
+  color: #BFDBFE !important;
+}
+
+[data-theme="dark"] .badge-hired {
+  background: #064E3B !important;
+  color: #6EE7B7 !important;
+}
+
 [data-theme="dark"] .topbar-title,
 [data-theme="dark"] .topbar .btn,
 [data-theme="dark"] .topbar-actions,
