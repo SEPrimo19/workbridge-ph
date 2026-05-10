@@ -162,21 +162,45 @@
   color: #A5B4FC !important;
 }
 
+/* Override Bootstrap's table CSS variables in dark mode. Bootstrap 5 sets cell
+   backgrounds via these variables on `<td>` / `<th>` directly — setting
+   background on the `<tr>` doesn't win because the cell background covers it.
+   This is the canonical Bootstrap 5 way to theme tables. */
+[data-theme="dark"] .table {
+  --bs-table-bg:            #1F2937;
+  --bs-table-color:         #F9FAFB;
+  --bs-table-border-color:  #4B5563;
+  --bs-table-striped-bg:    #374151;
+  --bs-table-striped-color: #F9FAFB;
+  --bs-table-hover-bg:      #4B5563;
+  --bs-table-hover-color:   #F9FAFB;
+  --bs-table-active-bg:     #4B5563;
+  --bs-table-active-color:  #F9FAFB;
+}
+
 [data-theme="dark"] .table thead th {
   background: #374151 !important;
   color: #E5E7EB !important;
+  border-color: #4B5563 !important;
 }
 
-[data-theme="dark"] .table tbody tr {
-  background: #1F2937 !important;
+/* Force cell backgrounds explicitly so any rogue `bg-white` or theme leak
+   from Bootstrap's table-light variant doesn't punch through. */
+[data-theme="dark"] .table tbody td,
+[data-theme="dark"] .table tbody th {
+  background-color: var(--bs-table-bg) !important;
+  color: var(--bs-table-color) !important;
+  border-color: var(--bs-table-border-color) !important;
 }
 
-[data-theme="dark"] .table tbody tr:nth-child(even) {
-  background: #374151 !important;
+[data-theme="dark"] .table tbody tr:nth-child(even) td,
+[data-theme="dark"] .table tbody tr:nth-child(even) th {
+  background-color: var(--bs-table-striped-bg) !important;
 }
 
-[data-theme="dark"] .table tbody tr:hover {
-  background: #4B5563 !important;
+[data-theme="dark"] .table tbody tr:hover td,
+[data-theme="dark"] .table tbody tr:hover th {
+  background-color: var(--bs-table-hover-bg) !important;
 }
 
 [data-theme="dark"] .table-wrap,
