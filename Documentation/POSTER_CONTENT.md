@@ -22,7 +22,7 @@ A Web-Based Unified Employment Platform for Decent Work Access
 
 ### Authoring line (use 32pt, italic)
 ```
-Capstone Project · IT305 Web Systems and Technologies
+Major Course Output · IT305 Web Systems and Technologies
 Northwest Samar State University · Calbayog City, Samar
 ```
 
@@ -168,9 +168,9 @@ github.com/SEPrimo19/workbridge-ph
 
 *(Generate the QR at qrcode-monkey.com or use Canva's built-in QR widget — point it to the GitHub URL.)*
 
-### Faculty advisor / panel acknowledgment line
+### Course instructor acknowledgment line
 ```
-Submitted under the supervision of [Faculty Advisor Name]
+Submitted to [Instructor Name] — IT305 Web Systems and Technologies
 Northwest Samar State University · College of Computing Studies · 2026
 ```
 

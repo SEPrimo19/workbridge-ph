@@ -3,7 +3,7 @@
 **Target runtime:** 4–5 minutes
 **Recording tool:** OBS Studio (free) or Windows Game Bar (`Win+G`) or Loom
 **Resolution:** 1080p, 1920×1080 viewport
-**Audio:** Speak clearly, slightly slower than natural pace (panels watch on speakers, not headphones)
+**Audio:** Speak clearly, slightly slower than natural pace (the instructor may watch on phone speakers, not headphones)
 
 ---
 
@@ -28,11 +28,11 @@
 
 **On screen:** Public homepage at `http://localhost/workbridge/`
 
-> "Hello, panel. This is **WorkBridge PH** — a web-based unified employment platform built as our IT305 capstone project for Northwest Samar State University.
+> "Good day, Sir/Ma'am. This is **WorkBridge PH** — a web-based unified employment platform built as our IT305 Major Course Output for Northwest Samar State University.
 >
 > The system addresses Sustainable Development Goal 8 — Decent Work and Economic Growth — by connecting job seekers, employers, and regulators in a single trusted platform that serves white-collar, blue-collar, and household workers alike."
 
-**Action:** Slowly scroll down the homepage so the panel sees the hero, search, category tiles, and featured jobs.
+**Action:** Slowly scroll down the homepage so the viewer sees the hero, search, category tiles, and featured jobs.
 
 ---
 
@@ -156,7 +156,7 @@
 
 ## Tips for nailing the take
 
-1. **Speak in your normal voice but project slightly louder.** Panels watch on phone speakers.
+1. **Speak in your normal voice but project slightly louder.** Phone-speaker playback is unforgiving.
 2. **Don't apologize on camera** if you fumble — just pause, breathe, restart that segment.
 3. **Mouse movements should be deliberate**, not frantic. Move, pause, click, pause.
 4. **Highlight critical buttons by hovering 1 second** before clicking — gives the eye time to track.

@@ -157,7 +157,7 @@ const html = `<!DOCTYPE html>
   <h1>WorkBridge PH</h1>
   <p class="subtitle">A Web-Based Unified Employment Platform for Decent Work Access</p>
   <p class="meta">
-    Capstone Project · IT305 Web Systems and Technologies<br>
+    Major Course Output · IT305 Web Systems and Technologies<br>
     Northwest Samar State University · Calbayog City, Samar
     <strong>Submitted for Intellectual Property Protection</strong>
     ${today}
