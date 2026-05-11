@@ -159,6 +159,12 @@ const html = `<!DOCTYPE html>
   <p class="meta">
     Major Course Output · IT305 Web Systems and Technologies<br>
     Northwest Samar State University · Calbayog City, Samar
+    <strong>Authors</strong>
+    Jhon Clarence Rulona<br>
+    Jovannie Mataganas<br>
+    John Lienard Safuentes<br>
+    Cyril James Garnica<br>
+    Jahiel Tapiador
     <strong>Submitted for Intellectual Property Protection</strong>
     ${today}
     <br>

@@ -7,6 +7,23 @@
 
 ---
 
+## 👥 Presenter assignments
+
+Each member narrates one segment. Swap roles if anyone has voice/recording issues — these are defaults.
+
+| Segment | Time | Presenter |
+|---|---|---|
+| 1. Cold open + intro | 0:00 – 0:25 | **Jhon Clarence Rulona** |
+| 2. Public browse | 0:25 – 0:55 | **Jovannie Mataganas** |
+| 3. Seeker journey | 0:55 – 1:55 | **John Lienard Safuentes** |
+| 4. Employer journey | 1:55 – 3:00 | **Cyril James Garnica** |
+| 5. Admin journey | 3:00 – 4:00 | **Jahiel Tapiador** |
+| 6. Tech, security, closing | 4:00 – 4:30 | **Jhon Clarence Rulona** |
+
+**Recording approach:** record each segment independently on the same machine, then stitch the clips end-to-end in Clipchamp (free, built into Windows) or any video editor. Each member only needs to be physically present for their own segment. The lead developer bookends the video for technical authority on the intro and closing.
+
+---
+
 ## Pre-recording checklist
 
 - [ ] Run `php artisan migrate:fresh --seed` so demo data is fresh
@@ -25,6 +42,7 @@
 ## 🎬 SCRIPT
 
 ### [0:00 – 0:25] · Cold open
+*Presenter: Jhon Clarence Rulona*
 
 **On screen:** Public homepage at `http://localhost/workbridge/`
 
@@ -37,6 +55,7 @@
 ---
 
 ### [0:25 – 0:55] · Public browse
+*Presenter: Jovannie Mataganas*
 
 **On screen:** Click **Categories** in the top nav.
 
@@ -53,6 +72,7 @@
 ---
 
 ### [0:55 – 1:55] · Seeker journey *(60 sec — most important role to showcase)*
+*Presenter: John Lienard Safuentes*
 
 **Action:** Top right → click **Log in** → use `juan@example.com` / `password`.
 
@@ -79,6 +99,7 @@
 ---
 
 ### [1:55 – 3:00] · Employer journey *(65 sec)*
+*Presenter: Cyril James Garnica*
 
 **Action:** Log in as `hr@technova.ph` / `password`.
 
@@ -105,6 +126,7 @@
 ---
 
 ### [3:00 – 4:00] · Admin journey *(60 sec)*
+*Presenter: Jahiel Tapiador*
 
 **Action:** Log in as `admin@workbridge.ph` / `password`.
 
@@ -131,6 +153,7 @@
 ---
 
 ### [4:00 – 4:30] · Tech and security
+*Presenter: Jhon Clarence Rulona (closing)*
 
 **On screen:** Briefly toggle dark mode in Settings.
 

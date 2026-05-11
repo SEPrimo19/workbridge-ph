@@ -26,12 +26,17 @@ Major Course Output · IT305 Web Systems and Technologies
 Northwest Samar State University · Calbayog City, Samar
 ```
 
-### Group line (use 28pt)
+### Group members line (use 28pt)
 ```
-Group 4 · Submitted May 15, 2026
+Group Members:
+Jhon Clarence Rulona · Jovannie Mataganas · John Lienard Safuentes
+Cyril James Garnica · Jahiel Tapiador
 ```
 
-*(Replace "Group 4" with your group's official name and add member names if required by your school template.)*
+### Submission line (use 24pt, slightly smaller than members)
+```
+Submitted May 15, 2026
+```
 
 ---
 
