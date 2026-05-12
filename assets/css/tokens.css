@@ -150,6 +150,23 @@
   color: #D1D5DB !important;
 }
 
+/* Category cards — both the small tiles on the homepage and the larger
+   cards on /categories.html. In dark mode the default text color (and any
+   Bootstrap .text-dark utility on the larger cards) renders black on a
+   dark background = invisible. Force light text. */
+[data-theme="dark"] .category-card,
+[data-theme="dark"] .category-card:hover,
+[data-theme="dark"] a.job-card.text-dark,
+[data-theme="dark"] a.job-card.text-dark * {
+  color: #F9FAFB !important;
+}
+
+[data-theme="dark"] a.job-card.text-dark .text-secondary,
+[data-theme="dark"] a.job-card.text-dark .text-muted,
+[data-theme="dark"] a.job-card.text-dark small {
+  color: #D1D5DB !important;
+}
+
 [data-theme="dark"] .table th,
 [data-theme="dark"] .table td,
 [data-theme="dark"] .table a,

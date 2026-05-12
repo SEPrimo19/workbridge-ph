@@ -57,10 +57,13 @@
 .public-nav-links .btn-primary {
   padding: var(--space-sm) var(--space-lg);
   text-decoration: none;
+  /* Override the gray inherited from .public-nav-links a — the button needs
+     solid white text on its indigo background for readability. */
+  color: #ffffff !important;
 }
 
 .public-nav-links .btn-primary:hover {
-  color: white;
+  color: #ffffff !important;
 }
 
 /* Hamburger toggle injected by app.js — only visible on phones */
@@ -249,6 +252,10 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   text-align: center;
+  /* Explicit text color so it stays readable on both light and dark
+     card backgrounds (the dark-mode override is in tokens.css). */
+  color: var(--color-text);
+  font-weight: 500;
   transition: all var(--transition-fast);
 }
 

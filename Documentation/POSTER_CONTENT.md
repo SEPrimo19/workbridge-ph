@@ -175,7 +175,7 @@ github.com/SEPrimo19/workbridge-ph
 
 ### Course instructor acknowledgment line
 ```
-Submitted to [Instructor Name] — IT305 Web Systems and Technologies
+Submitted to Dr. Ervin Rodriguez — IT305 Web Systems and Technologies
 Northwest Samar State University · College of Computing Studies · 2026
 ```
 
