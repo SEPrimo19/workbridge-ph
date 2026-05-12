@@ -29,6 +29,18 @@
   color: var(--color-accent);
 }
 
+.public-nav-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.public-nav-logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
 .public-nav-links {
   display: flex;
   align-items: center;

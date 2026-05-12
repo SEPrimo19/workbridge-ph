@@ -320,6 +320,20 @@ a:focus-visible .stat-card {
   border-bottom: 1px solid rgba(255,255,255,0.2);
   margin-bottom: var(--space-md);
 }
+.sidebar-logo a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.sidebar-logo-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  background: rgba(255,255,255,0.95);
+  border-radius: 6px;
+  padding: 2px;
+  flex-shrink: 0;
+}
 
 .sidebar-nav {
   list-style: none;

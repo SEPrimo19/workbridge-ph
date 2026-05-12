@@ -53,11 +53,13 @@ export function renderLayout(role, title) {
   const insideRoleFolder = /\/(seeker|employer|admin)\//.test(path);
   const navPrefix    = insideRoleFolder ? '' : `${role}/`;
   const loginPrefix  = insideRoleFolder ? '../auth/' : 'auth/';
+  // Logo lives at assets/img/logo.png — same depth logic as the auth path
+  const logoSrc      = insideRoleFolder ? '../assets/img/logo.png' : 'assets/img/logo.png';
 
   const sidebarHtml = `
     <div class="drawer-overlay" id="drawer-overlay"></div>
     <aside class="sidebar" id="sidebar-drawer">
-      <div class="sidebar-logo"><a href="${navPrefix}dashboard.html" class="text-white text-decoration-none">WorkBridge PH</a></div>
+      <div class="sidebar-logo"><a href="${navPrefix}dashboard.html" class="text-white text-decoration-none"><img src="${logoSrc}" alt="" class="sidebar-logo-img"><span>WorkBridge PH</span></a></div>
       <button type="button" class="sidebar-close btn btn-ghost btn-sm" id="drawer-close" aria-label="Close drawer"><i class="bi bi-x-lg"></i></button>
       <ul class="sidebar-nav">
         ${nav.map(n => `
