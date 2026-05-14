@@ -831,14 +831,19 @@ a:focus-visible .stat-card {
   position: absolute;
   top: 100%;
   right: 0;
+  left: auto;                                       /* prevent Bootstrap utility classes from flipping us left:0 */
   margin-top: var(--space-xs);
-  min-width: 180px;
+  min-width: 200px;
+  max-width: calc(100vw - var(--space-lg) * 2);     /* never overflow viewport on narrow screens */
   background: var(--color-bg-card);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-lg);
   padding: var(--space-sm);
-  z-index: 50;
+  /* Above sticky-top (1020) and the topbar's own context (99). Below the
+     mobile drawer (1101) so the drawer overlay still covers the dropdown
+     correctly, and below modals (9999) for the same reason. */
+  z-index: 1080;
 }
 
 .dropdown-menu.show {
