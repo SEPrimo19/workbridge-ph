@@ -27,19 +27,19 @@ class AuthController extends Controller
         $user = User::create([
             'name'     => $data['name'],
             'email'    => $data['email'],
-            'password' => $data['password'],
+            'password' => Hash::make($data['password']),
             'role'     => $data['role'],
             'status'   => 'active',
         ]);
 
         if ($data['role'] === 'seeker') {
-            Seeker::create(['user_id' => $user->id]);
+            Seeker::create(['user_id' => $user->getKey()]);
         } elseif ($data['role'] === 'employer') {
             $companyName = $request->input('company_name', $data['name'] . "'s Company");
             Company::create([
-                'user_id'         => $user->id,
+                'user_id'         => $user->getKey(),
                 'name'            => $companyName,
-                'slug'            => \Illuminate\Support\Str::slug($companyName) . '-' . $user->id,
+                'slug'            => Str::slug($companyName) . '-' . $user->getKey(),
                 'verified_status' => 'Unverified',
             ]);
         }
@@ -61,13 +61,35 @@ class AuthController extends Controller
 
         $user = User::where('email', $data['email'])->first();
 
-        if (! $user || ! Hash::check($data['password'], $user->password)) {
+        if (! $user) {
             throw ValidationException::withMessages([
                 'email' => ['The provided credentials are incorrect.'],
             ]);
         }
 
-        if ($user->status === 'banned') {
+        $storedPassword = (string) $user->getAttribute('password');
+
+        try {
+            $passwordMatches = Hash::check($data['password'], $storedPassword);
+        } catch (\RuntimeException) {
+            $passwordMatches = false;
+        }
+
+        // Older local/demo accounts were created before password hashing was
+        // fixed. Let them sign in once, then immediately upgrade the stored
+        // password to Laravel's normal hashed format.
+        if (! $passwordMatches && hash_equals($storedPassword, (string) $data['password'])) {
+            $user->forceFill(['password' => Hash::make($data['password'])])->save();
+            $passwordMatches = true;
+        }
+
+        if (! $passwordMatches) {
+            throw ValidationException::withMessages([
+                'email' => ['The provided credentials are incorrect.'],
+            ]);
+        }
+
+        if ($user->getAttribute('status') === 'banned') {
             return response()->json(['message' => 'Your account has been banned.'], 403);
         }
 
@@ -81,13 +103,13 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        $request->user()->currentAccessToken()->delete();
+        $this->currentUser($request)->currentAccessToken()?->delete();
         return response()->json(['message' => 'Logged out.']);
     }
 
     public function me(Request $request)
     {
-        return response()->json($this->userPayload($request->user()));
+        return response()->json($this->userPayload($this->currentUser($request)));
     }
 
     /**
@@ -139,11 +161,13 @@ class AuthController extends Controller
 
         $row = DB::table('password_reset_tokens')->where('email', $data['email'])->first();
 
-        if (! $row || ! Hash::check($data['token'], $row->token)) {
+        $reset = $row ? (array) $row : null;
+
+        if (! $reset || ! Hash::check($data['token'], (string) $reset['token'])) {
             return response()->json(['message' => 'Invalid or expired reset link.'], 422);
         }
 
-        if (Carbon::parse($row->created_at)->diffInMinutes(now()) > 60) {
+        if (Carbon::parse($reset['created_at'])->diffInMinutes(now()) > 60) {
             DB::table('password_reset_tokens')->where('email', $data['email'])->delete();
             return response()->json(['message' => 'Reset link has expired. Request a new one.'], 422);
         }
@@ -170,9 +194,9 @@ class AuthController extends Controller
             'new_password'     => 'required|string|min:6|different:current_password',
         ]);
 
-        $user = $request->user();
+        $user = $this->currentUser($request);
 
-        if (! Hash::check($data['current_password'], $user->password)) {
+        if (! Hash::check($data['current_password'], (string) $user->getAttribute('password'))) {
             return response()->json(['message' => 'Current password is incorrect.'], 422);
         }
 
@@ -184,20 +208,31 @@ class AuthController extends Controller
     private function userPayload(User $user): array
     {
         $payload = [
-            'id'    => $user->id,
-            'name'  => $user->name,
-            'email' => $user->email,
-            'role'  => $user->role,
-            'status' => $user->status,
+            'id'     => $user->getKey(),
+            'name'   => $user->getAttribute('name'),
+            'email'  => $user->getAttribute('email'),
+            'role'   => $user->getAttribute('role'),
+            'status' => $user->getAttribute('status'),
         ];
 
-        if ($user->role === 'seeker') {
+        if ($user->getAttribute('role') === 'seeker') {
             $seeker = $user->seeker()->with('skills')->first();
             $payload['seeker'] = $seeker;
-        } elseif ($user->role === 'employer') {
-            $payload['company'] = $user->company;
+        } elseif ($user->getAttribute('role') === 'employer') {
+            $payload['company'] = $user->company()->first();
         }
 
         return $payload;
+    }
+
+    private function currentUser(Request $request): User
+    {
+        $user = $request->user();
+
+        if (! $user instanceof User) {
+            abort(401, 'Unauthenticated.');
+        }
+
+        return $user;
     }
 }

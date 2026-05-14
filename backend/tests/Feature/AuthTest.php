@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
@@ -62,6 +63,30 @@ class AuthTest extends TestCase
             'email'    => 'existing@test.com',
             'password' => 'wrong-password',
         ])->assertStatus(422);
+    }
+
+    /** @test */
+    public function login_upgrades_legacy_plaintext_seeker_passwords()
+    {
+        $userId = DB::table('users')->insertGetId([
+            'name'       => 'Legacy Seeker',
+            'email'      => 'legacy-seeker@test.com',
+            'password'   => 'password',
+            'role'       => 'seeker',
+            'status'     => 'active',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        $this->postJson('/api/auth/login', [
+            'email'    => 'legacy-seeker@test.com',
+            'password' => 'password',
+        ])->assertStatus(200)
+          ->assertJsonStructure(['user' => ['id', 'email', 'role'], 'token']);
+
+        $user = User::findOrFail($userId);
+        $this->assertNotEquals('password', $user->password);
+        $this->assertTrue(Hash::check('password', $user->password));
     }
 
     /** @test */

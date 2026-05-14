@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 
 class ApplicationController extends Controller
 {
-    public function apply(Request $request, $jobId)
+    public function apply(Request $request, int $jobId)
     {
         $user = $request->user();
         $seeker = $user->seeker;
@@ -83,7 +83,7 @@ class ApplicationController extends Controller
         return response()->json($apps);
     }
 
-    public function forJob(Request $request, $jobId)
+    public function forJob(Request $request, int $jobId)
     {
         $user = $request->user();
         $company = $user->company;
@@ -102,7 +102,7 @@ class ApplicationController extends Controller
         return response()->json($apps);
     }
 
-    public function updateStatus(Request $request, $appId)
+    public function updateStatus(Request $request, int $appId)
     {
         $user = $request->user();
         $app = Application::with('jobListing.company')->findOrFail($appId);
@@ -136,7 +136,7 @@ class ApplicationController extends Controller
         return response()->json($app->load('timelines'));
     }
 
-    public function show(Request $request, $appId)
+    public function show(Request $request, int $appId)
     {
         $user = $request->user();
         $app = Application::with(['jobListing.company', 'jobListing.tags', 'seeker.user', 'seeker.skills', 'timelines'])->findOrFail($appId);
@@ -151,7 +151,7 @@ class ApplicationController extends Controller
         return response()->json($app);
     }
 
-    public function withdraw(Request $request, $appId)
+    public function withdraw(Request $request, int $appId)
     {
         $user = $request->user();
         $seeker = $user->seeker;
