@@ -20,14 +20,18 @@
           <span>WorkBridge PH</span>
         </a>
         <h1 class="h4 mb-4">Log in</h1>
+
+        <!-- Inline error banner — persistent until the user changes input -->
+        <div id="login-error" class="alert alert-danger" role="alert" hidden></div>
+
         <form id="login-form">
           <div class="form-group">
             <label class="form-label">Email</label>
-            <input type="email" name="email" class="form-input" required placeholder="you@example.com">
+            <input type="email" name="email" class="form-input" required placeholder="you@example.com" autocomplete="email">
           </div>
           <div class="form-group">
             <label class="form-label">Password</label>
-            <input type="password" name="password" class="form-input" required>
+            <input type="password" name="password" class="form-input" required autocomplete="current-password">
           </div>
           <button type="submit" class="btn btn-primary w-100">Log in</button>
         </form>
@@ -50,8 +54,18 @@
     import { login, getRedirectAfterLogin } from './../assets/js/auth.js';
     import { toastError, toastSuccess } from './../assets/js/ui.toast.js';
 
-    document.getElementById('login-form').addEventListener('submit', async (e) => {
+    const errBox = document.getElementById('login-error');
+    const form   = document.getElementById('login-form');
+
+    // Clear the inline error as soon as the user starts typing — non-sticky UX.
+    form.querySelectorAll('input').forEach(input => {
+      input.addEventListener('input', () => { errBox.hidden = true; });
+    });
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      errBox.hidden = true;
+
       const btn = e.target.querySelector('button[type=submit]');
       btn.disabled = true;
       btn.textContent = 'Logging in…';
@@ -64,7 +78,14 @@
           window.location.href = redirect || getRedirectAfterLogin(result.user);
         }, 300);
       } else {
-        toastError(result.error);
+        // Two-channel feedback: inline banner stays put, toast pops briefly.
+        // "Incorrect credentials" is friendlier than backend's literal "The provided credentials are incorrect."
+        const msg = /incorrect|invalid|credentials/i.test(result.error || '')
+          ? 'Incorrect email or password. Please try again.'
+          : (result.error || 'Login failed. Please try again.');
+        errBox.textContent = msg;
+        errBox.hidden = false;
+        toastError(msg);
         btn.disabled = false;
         btn.textContent = 'Log in';
       }

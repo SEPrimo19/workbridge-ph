@@ -77,7 +77,10 @@ class SeekerController extends Controller
 
         return response()->json([
             'profile_photo'     => $path,
-            'profile_photo_url' => Storage::disk('public')->url($path),
+            // Storage::url() (static facade) is properly typed; disk('public')->url()
+            // works at runtime but trips Intelephense because url() is on the
+            // FilesystemAdapter concrete class, not the Filesystem interface.
+            'profile_photo_url' => Storage::url($path),
         ]);
     }
 
@@ -128,8 +131,10 @@ class SeekerController extends Controller
             return response()->json(['message' => 'File not found.'], 404);
         }
 
-        return Storage::disk('local')->download(
-            $resume->file_path,
+        // response()->download() is properly typed and gives us the same result
+        // as the Filesystem download() method that Intelephense can't see.
+        return response()->download(
+            storage_path('app/' . $resume->file_path),
             $resume->original_name
         );
     }
